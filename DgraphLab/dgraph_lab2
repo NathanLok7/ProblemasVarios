@@ -1,0 +1,153 @@
+{
+  "set": [
+    {
+      "uid": "_:newyork",
+      "city_name": "New York",
+      "population": 8000000,
+      "location": "40.7128° N, 74.0060° W",
+      "connected_cities": [
+        {"uid": "_:losangeles"},
+        {"uid": "_:chicago"},
+        {"uid": "_:miami"}
+      ]
+    }
+  ]
+}
+{
+  "set": [
+      {
+      "uid": "_:losangeles",
+      "city_name": "Los Angeles",
+      "population": 4000000,
+      "location": "34.0522° N, 118.2437° W",
+      "connected_cities": [
+        {"uid": "_:lasvegas"},
+        {"uid": "_:newyork"}
+      ]
+    }
+  ]
+}
+{
+  "set": [
+      {
+      "uid": "_:chicago",
+      "city_name": "Chicago",
+      "population": 2700000,
+      "location": "41.8781° N, 87.6298° W",
+      "connected_cities": [
+        {"uid": "_:newyork"},
+        {"uid": "_:losangeles"},
+        {"uid": "_:sandiego"}
+        ]
+    }
+  ]
+}
+
+{
+  "set": [
+    {
+      "uid": "_:shipment1",
+      "tracking_number": "ABC123",
+      "weight": 100,
+      "size": "Large",
+      "destination_address": "Standart St, CityB",
+      "destination_city": {
+          "uid": "_:lasvegas"
+      }
+    }
+  ]
+}
+
+{
+  "set": [
+    {
+      "uid": "_:shipment2",
+      "tracking_number": "ABC456",
+      "weight": 300,
+      "size": "Medium",
+      "destination_address": "321 Pine St, CityD",
+      "destination_city": {
+          "uid": "_:chicago"
+      }
+    }
+  ]
+}
+
+{
+  "set": [
+    {
+      "uid": "_:shipment2",
+      "tracking_number": "ABC789",
+      "weight": 500,
+      "size": "Large",
+      "destination_address": "321 Pine St, CityD",
+       "destination_city": {
+          "uid": "_:newyork"
+      }
+    }
+  ]
+}
+
+{
+  "set": [
+    {
+      "uid": "_:warehouse1",
+      "address": "123 Warehouse Ave, CityA",
+      "name": "CityA Warehouse Hub",
+      "shipments_stored": [
+        {
+          "uid": "_:shipment1"
+        }
+      ]
+    }
+  ]
+}
+
+{
+  "set": [
+    {
+      "uid": "_:warehouse2",
+      "address": "456 Storage St, CityB",
+      "name": "CityB Storage",
+      "shipments_stored": [
+        {
+          "uid": "_:shipment2"
+        }
+      ]
+    }
+  ]
+}
+
+{
+  "set": [
+    {
+      "uid": "_:warehouse3",
+      "address": "789 Cargo Ln, CityC",
+      "name": "CityC Cargo Hub",
+      "shipments_stored": [
+        {
+          "uid": "_:shipment3"
+        }
+      ]
+    }
+  ]
+}
+
+warehouse_has(fun: eq(Warehouse.name, "CityA Warehouse Hub")){
+  Warehouse.name 
+  Warehouse.Shipments_stored(
+    shipment.tracking_number
+    shipment.weight
+  )
+
+}
+
+
+{
+  city(func: eq(name, "New York")) {
+    name
+    population
+    location
+  }
+}
+
